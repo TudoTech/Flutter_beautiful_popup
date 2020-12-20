@@ -95,17 +95,27 @@ abstract class BeautifulPopupTemplate extends StatefulWidget {
           );
   }
 
+  GlobalKey _keyRed = GlobalKey();
+
+//  getTitleSize(){
+//    if(_keyRed.currentContext!=null)
+//    return _keyRed.currentContext.size.height;
+//    else
+//      return null;
+//  }
   Widget get title {
     if (options.title is Widget) {
       return Container(
+        key: _keyRed,
         width: percentW(100),
         height: percentH(10),
         alignment: Alignment.center,
         child: options.title,
       );
     }
-    return Container(
+    return ((options.title==null)||(options.title.toString().length==0))?Container() : Container(
       alignment: Alignment.center,
+      key: _keyRed,
       width: percentW(100),
       height: percentH(10),
       child: Opacity(
@@ -141,7 +151,7 @@ abstract class BeautifulPopupTemplate extends StatefulWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.max,
-      direction: Axis.horizontal,
+      direction: Axis.vertical,
       children: options.actions
           .map(
             (button) => Flexible(
